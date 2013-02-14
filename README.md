@@ -14,6 +14,8 @@ BoilerPy was created with the help of the excellent Java2Python library :(https:
 
 ##Installation
 
+Download the package from dist/BoilerPy1.0.zip
+
 BoilerPy was packaged with distutils.  In can be installed as following:
 
 ```
