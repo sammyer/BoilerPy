@@ -80,13 +80,13 @@ class Extractor(object):
 		bpParser=parser.BoilerpipeHTMLParser()
 		try:
 			bpParser.feed(inputStr)
-		except HTMLParser.HTMLParseError as e:
+		except:
 			#in case of error, try again, first removing script tag content
 			bpParser=parser.BoilerpipeHTMLParser()
 			inputStr=re.sub(r'<(?:script|SCRIPT)[^>]*>.*?</(?:script|SCRIPT)>','<script></script>',inputStr,0,re.DOTALL)
 			try:
 				bpParser.feed(inputStr)
-			except HTMLParser.HTMLParseError as e:
+			except:
 				print "Error parsing HTML : "+str(e)
 				return None
 		doc=bpParser.toTextDocument()
