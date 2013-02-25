@@ -38,30 +38,35 @@ class Extractor(object):
 		self.filter=filtr	
 	
 	def getContent(self, text):
-		doc=self.parseDoc(text)
-		self.filter.process(doc)
-		return doc.getContent()
+		return self.getDoc(text).getContent()
 	
 	def getContentFromUrl(self, url):
-		doc=self.getDocFromUrl(url)
-		self.filter.process(doc)
-		return doc.getContent()
+		return self.getDocFromUrl(url).getContent()
 	
 	def getContentFromFile(self, filename):
-		doc=self.getDocFromFile(filename)
-		self.filter.process(doc)
-		return doc.getContent()
+		return self.getDocFromFile(filename).getContent()
 	
 	def getDocFromFile(self,filename):
+		return self.getDoc(self.readFromFile(filename))
+	
+	def getDocFromUrl(self,url):
+		return self.getDoc(self.readFromUrl(filename))
+
+	def getDoc(self,text):
+		doc=self.parseDoc(text)
+		self.filter.process(doc)
+		return doc
+
+	def readFromFile(self,filename):
 		f=open(filename,'r')
 		text=f.read()
 		f.close()
 		try:
 			text=text.decode('utf8')
 		except UnicodeDecodeError: pass
-		return self.parseDoc(text)
+		return text
 	
-	def getDocFromUrl(self,url):
+	def readFromUrl(self,url):
 		f=urllib2.urlopen(url)
 		text=f.read()
 		encoding=self.getUrlEncoding(f)
@@ -69,7 +74,7 @@ class Extractor(object):
 		try:
 			text=text.decode(encoding)
 		except UnicodeDecodeError: pass
-		return self.parseDoc(text)
+		return text
 
 	def getUrlEncoding(self,f):
 		try:

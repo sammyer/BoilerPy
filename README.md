@@ -24,6 +24,8 @@ BoilerPy was packaged with distutils.  In can be installed as following:
 
 ##Usage
 
+The top-level interfaces are extractors.  Use getContent() to extract the filtered text.
+
 ```python
 import boilerpy
 
@@ -33,6 +35,19 @@ extractor.getContentFromUrl('http://www.example.com/')
 extractor.getContentFromFile('site/example.html')
 
 extractor.getContent('<html><body><h1>Example</h1></body></html>')
+
+```
+
+Alternatively, se getDoc() to return a boilerpipe document from which you can get more detailed information
+
+```python
+import boilerpy
+
+extractor=boilerpy.extractors.ARTICLE_EXTRACTOR
+
+doc=extractor.getDocFromUrl('http://www.example.com/')
+content=doc.getContent()
+title=doc.getTitle()
 
 ```
 
