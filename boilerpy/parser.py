@@ -315,7 +315,8 @@ defaultTagActionMap={
 	"OBJECT" : CommonTagActions.TA_IGNORABLE_ELEMENT,
 	"EMBED" : CommonTagActions.TA_IGNORABLE_ELEMENT,
 	"APPLET" : CommonTagActions.TA_IGNORABLE_ELEMENT,
-	"LINK" : CommonTagActions.TA_IGNORABLE_ELEMENT,
+	#Note: link removed because it can be self-closing in HTML5
+	#"LINK" : CommonTagActions.TA_IGNORABLE_ELEMENT,
 	"A" : CommonTagActions.TA_ANCHOR_TEXT,
 	"BODY" : CommonTagActions.TA_BODY,
 	"STRIKE" : CommonTagActions.TA_INLINE_NO_WHITESPACE,
